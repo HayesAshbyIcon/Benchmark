@@ -1,0 +1,10 @@
+
+network={
+	ssid="Network Test Router"
+	bssid=00:11:32:76:80:c0
+	psk="password"
+	key_mgmt=WPA-PSK
+	priority=2
+	disabled=1
+	id_str="%7B%22creatorUid%22%3A%221000%22%2C%22configKey%22%3A%22%5C%22Network+Test+Router%5C%22WPA_PSK%22%7D"
+}
