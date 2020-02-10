@@ -12,39 +12,44 @@
 
 if adb shell echo "Starting Wifi Test"; 
     then
-    adb shell monkey -p com.primatelabs.geekbench -c android.intent.category.LAUNCHER 1
+
+    #Variables
+    now=$(date)
+    ipaddr=$(ipconfig getifaddr en0)
+
+    #Installations
+
+        #Installing OoklaApp
+        adb install ~/Benchmark/WifiSuite/ooklaspeedtest.apk
+
+        #Installing TcpDump
+        adb remount
+        adb push ./tcpdump /system/xbin/tcpdump
+
+    #Tests
+    
+        #OoklaSpeedTest
+        adb shell monkey -p com.primatelabs.geekbench -c android.intent.category.LAUNCHER 1
+
+        #Counting Retransmissions
+        #adb shell tcpdump -c 100
+        adb shell tcpdump -p -v -w /sdcard/$now.pcap
+
+        #Latency
+        adb shell ping $ipaddr > /sdcard/WifiTestSuiteResults.txt
+
 
 else
     #Couldn't find device
      echo "Couldn't find device"
 fi
 
-#Variables
-    now=$(date)
-    ipaddr=$(ipconfig getifaddr en0)
-
 #ShutDown Wolf and Eru
 
     adb shell am force-stop com.ifit.eru
     adb shell am force-stop com.ifit.standalone
+   
 
-#Installations
-
-    #Installing TcpDump
-    adb remount
-    adb push ./tcpdump /system/xbin/tcpdump
-    
-#Tests
-    #Counting Retransmissions
-    #adb shell tcpdump -c 100
-    adb shell tcpdump -p -v -w /sdcard/$now.pcap
-
-    #Latency
-    adb shell ping $ipaddr > /sdcard/WifiTestSuiteResults.txt
-
-    #SpeedTest
-    ./data/data/com.termux/files/usr/bin/speedtest-cli >> WifiTestSuiteResults.txt
-    #adb uninstall com.termux
 #PullResults
 
     #SpeedTest
