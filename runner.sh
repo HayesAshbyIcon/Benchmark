@@ -5,7 +5,10 @@
 
     adb shell am force-stop com.ifit.eru
     adb shell am force-stop com.ifit.standalone
-  
+
+#Create a Results folder
+    mkdir "Results"
+
 
 if /bin/bash ./CpuSuite/cputest.sh; 
     then

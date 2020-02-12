@@ -73,14 +73,14 @@ fi
     #adb shell rm /sdcard/WifiTestSuiteResults.txt
 
     #TcpDump
-    adb pull /sdcard/$now.pcap
-    adb shell rm /sdcard/$now.pcap
+    #adb pull /sdcard/$now.pcap
+    #adb shell rm /sdcard/$now.pcap
         
 #CheckResults
     #Filter Retransmissions with Tshark
-    tshark -r $now.pcap -Y tcp.analysis.retransmission -W Retransmission.pcap
+    #tshark -r $now.pcap -Y tcp.analysis.retransmission -W Retransmission.pcap
 
-    grep -c '[TCP Retransmission]' Retransmission.pcap >> WifiTestSuiteResults.txt
+    #grep -c '[TCP Retransmission]' Retransmission.pcap >> WifiTestSuiteResults.txt
 
     #run cts --module CtsNetTestcases
 
