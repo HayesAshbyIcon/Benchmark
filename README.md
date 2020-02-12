@@ -3,7 +3,7 @@ The creation of a Benchmark Versioning Control system for our Embedded Tablets u
 
 <h2>Requirements</h2>
 
-<h3>For the Test host</h3> 
+<h3>For the Test Host</h3> 
 
 [Bash](https://www.gnu.org/software/bash/) which should come pre-installed on macOS and Linux, Android Debugging Bridge, [ADB](https://www.xda-developers.com/install-adb-windows-macos-linux/), and [MongoDB](https://docs.mongodb.com/manual/installation/)
 
