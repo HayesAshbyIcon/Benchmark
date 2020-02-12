@@ -2,12 +2,12 @@
 #getprop does not require root
 
 #If Device is connected and USB Debugging Enabled
-if adb shell echo "Starting Test"; 
+if adb shell echo "Starting Version Control"; 
     then
 
     #Mongo Stuff
-    collection='asdfasdf'
-    #collection=$(curl http://127.0.0.1:8081/target)
+    #collection='asdfasdf'
+    collection=$(curl http://127.0.0.1:8081/target)
     server='localhost:27017'
     db='test'
 
@@ -40,14 +40,16 @@ if adb shell echo "Starting Test";
             ydpi=$(adb shell wm density | cut -d " " -f 3)
             approxscreensize=$(bc <<< "scale=2 ; sqrt((($xres / $xdpi)*($xres / $xdpi)) + (($yres / $ydpi)*($yres / $ydpi)))")
 
-    #add all device details and the results of the tests that were ran
-    testresults=$1
-    jsonobject='{"Serial":"'"$serial"'","Model":"'"$model"'","Build":"'"$build"'","Android":"'"$android"'","Chipset":"'"$chipset"'","ChipsetHardwareVersion":"'"$chipsethardware"'","ChipsetReleaseVersion":"'"$chipsetrelease"'","ApproxScreenSize":"'"$approxscreensize"'","TestResults":"'"$testresults"'"}'
+    #add all device details and the results of the tests we ran
+    testresult=$(cat ./Results/testresult.json)
+
+    jsonobject='{"Serial":"'"$serial"'","Model":"'"$model"'","Build":"'"$build"'","Android":"'"$android"'","Chipset":"'"$chipset"'","ChipsetHardwareVersion":"'"$chipsethardware"'","ChipsetReleaseVersion":"'"$chipsetrelease"'","ApproxScreenSize":"'"$approxscreensize"'","TestResults":'$testresult'}'
 
 
     #Import Device.json to our DB
-    printf $jsonobject > device.json
-    mongoimport --host $server --db $db --collection $collection  --file device.json
+    echo "$jsonobject" > ./Results/device.json
+    
+    mongoimport --host $server --db $db --collection $collection  --file ./Results/device.json
 
 
 

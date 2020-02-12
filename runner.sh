@@ -7,25 +7,26 @@
     adb shell am force-stop com.ifit.standalone
   
 
-if /bin/bash ~/Benchmark/CpuSuite/cputest.sh; 
+if /bin/bash ./CpuSuite/cputest.sh; 
     then
-    cpuresult=$(cat \~/Sites/Benchmark/CpuSuite/cpuresult.json)
+    cpuresult=$(cat ./Results/cpuresult.json)
 else
     #Couldn't find test
      echo "Couldn't find Cpu test"
 fi
 
-if /bin/bash ~/Benchmark/WifiSuite/wifitest.sh; 
+if /bin/bash ./WifiSuite/wifitest.sh; 
     then
 else
     #Couldn't find test
      echo "Couldn't find Wifi test"
 fi
 
+#These are json objects by themselves
+cpuresult=$(cat ./Results/cpuresult.json)
+#implement wifitest
+wifiresult="{}"
 
+echo '{"CpuTest":'$cpuresult',"WifiTest":'$wifiresult'}' > ./Results/testresult.json
 
-jsonobject='{"CpuTest":{"'"$cpuresult"'"},"WifiTest":{"'"$wifiresult"'"}}'
-
-
-
-/bin/bash ~/Benchmark/WifiSuite/versioncontrol.sh $jsonobject
+/bin/bash ./VersionControl/versioncontrol.sh

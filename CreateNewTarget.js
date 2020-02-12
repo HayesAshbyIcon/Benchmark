@@ -1,4 +1,4 @@
-var collectionName = "asdfasdf"
+var collectionName = "asdf"
 
 db.createCollection(collectionName, {
     validator: {

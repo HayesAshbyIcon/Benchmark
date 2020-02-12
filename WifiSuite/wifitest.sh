@@ -7,7 +7,7 @@
     #Install WireShark
     #Install ADB
     #Setup SpeedTest Server
-        #Run this command "cd ~/Sites/WifiTestingSuite/OoklaServer" then "./ooklaserver.sh start"
+        #Run this command "python ~/Benchmark/WifiSuite/wifi_speed_test_server.py"
 
 
 if adb shell echo "Starting Wifi Test"; 
@@ -16,20 +16,23 @@ if adb shell echo "Starting Wifi Test";
     #Variables
     now=$(date)
     ipaddr=$(ipconfig getifaddr en0)
+    disablebutton='android:id/button2'
+    startbutton='com.pzolee.android.localwifispeedtester:id/buttonStart'
+    bothbutton='com.pzolee.android.localwifispeedtester:id/radioBoth'
 
     #Installations
 
-        #Installing OoklaApp
-        adb install ~/Benchmark/WifiSuite/ooklaspeedtest.apk
+        #Installing speedtestapp
+        adb install ./WifiSuite/localspeedtest.apk
 
         #Installing TcpDump
         adb remount
-        adb push ./tcpdump /system/xbin/tcpdump
+        adb push ./WifiSuite/tcpdump /system/xbin/tcpdump
 
     #Tests
     
         #OoklaSpeedTest
-        adb shell monkey -p com.primatelabs.geekbench -c android.intent.category.LAUNCHER 1
+        #adb shell monkey -p com.primatelabs.geekbench -c android.intent.category.LAUNCHER 1
 
         #Counting Retransmissions
         #adb shell tcpdump -c 100
@@ -44,12 +47,6 @@ else
      echo "Couldn't find device"
 fi
 
-#ShutDown Wolf and Eru
-
-    adb shell am force-stop com.ifit.eru
-    adb shell am force-stop com.ifit.standalone
-   
-
 #PullResults
 
     #SpeedTest
@@ -58,7 +55,7 @@ fi
 
     #TcpDump
     adb pull /sdcard/$now.pcap
-    #adb shell rm /sdcard/$now.pcap
+    adb shell rm /sdcard/$now.pcap
         
 #CheckResults
     #Filter Retransmissions with Tshark
