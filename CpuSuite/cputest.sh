@@ -1,4 +1,4 @@
-#NEEDS ROOT
+#This Script requires root access to be enabled on the device.
 
 if adb shell echo "Starting CPU Test"; 
     then
