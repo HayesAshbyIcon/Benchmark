@@ -49,6 +49,8 @@ if adb shell echo "Starting Version Control";
     #Import Device.json to our DB
     echo "$jsonobject" > ./Results/device.json
     
+
+    #FUTURE make it so that we just send a POST request to the DB Server instead of using mongoimport
     mongoimport --host $server --db $db --collection $collection  --file ./Results/device.json
 
 

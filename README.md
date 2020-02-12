@@ -5,7 +5,7 @@ The creation of a Benchmark Versioning Control system for our Embedded Tablets u
 
 <h3>For the Test Host</h3> 
 
-[Bash](https://www.gnu.org/software/bash/) (or a similar Shell Command Language) which should come pre-installed on macOS and most Linux systems. [ADB](https://www.xda-developers.com/install-adb-windows-macos-linux/) and [MongoDB](https://docs.mongodb.com/manual/installation/) which both can be installed with the links provided. 
+[Bash](https://www.gnu.org/software/bash/) (or a similar Shell Command Language) which should come pre-installed on macOS and most Linux systems. [ADB](https://www.xda-developers.com/install-adb-windows-macos-linux/) and (Mongo should be removed as we create a more established server)[MongoDB](https://docs.mongodb.com/manual/installation/) which both can be installed with the links provided. 
 
 <h3>For the Server</h3> 
 
