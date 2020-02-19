@@ -1,5 +1,6 @@
-#TODO BETTER FILE PATHING
-
+#This is the Runner for the Entire Project 
+#It's goal is to Run the Tests specified then compile the testresult.json then have the versioncontrol.sh create a completed device.json to then be sent to the database
+#
 
 #ShutDown Wolf and Eru
 
@@ -20,15 +21,14 @@ fi
 
 if /bin/bash ./WifiSuite/wifitest.sh; 
     then
+    #implement wifitest
+    #wifiresult=$(cat ./Results/wifiresult.json)
+    wifiresult="{}"
 else
     #Couldn't find test
      echo "Couldn't find Wifi test"
 fi
 
-#These are json objects by themselves
-cpuresult=$(cat ./Results/cpuresult.json)
-#implement wifitest
-wifiresult="{}"
 
 echo '{"CpuTest":'$cpuresult',"WifiTest":'$wifiresult'}' > ./Results/testresult.json
 

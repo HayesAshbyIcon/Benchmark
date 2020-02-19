@@ -49,6 +49,12 @@ if adb shell echo "Starting Wifi Test";
         adb pull /sdcard/wifispeedtest/"$filename"
         adb shell rm /sdcard/wifispeedtest/"$filename"
 
+        /bin/bash ./WifiSuite/csv2json.sh "$filename" > ./Results/wifiresult.json
+
+        #Cleanup
+        rm ./"$filename"
+        adb uninstall com.pzolee.android.localwifispeedtester
+
         #Counting Retransmissions
         #adb shell tcpdump -c 100
         #adb shell tcpdump -p -v -w /sdcard/$now.pcap
