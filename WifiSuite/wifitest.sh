@@ -1,5 +1,9 @@
 #This Script requires root access to be enabled on the device.
 
+#WARNING
+#This Script is still not working It needs a little more work on parsing the csv into a json object
+#WARNING
+
 #Computer Setup
     #Install WireShark
     #Setup SpeedTest Server
